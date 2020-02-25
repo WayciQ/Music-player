@@ -64,7 +64,7 @@ function repeatShuffler() {
     }
 
 }
-// function where song 
+// function where return the random index in number of the song  
 perviousNum = NaN;
 var shuffleSong = function() {
 
@@ -148,3 +148,7 @@ setInterval(updateProgressValue, 500);
 function changeProgressBar() {
     song.currentTime = progressBar.value;
 };
+
+function fbClick() {
+    window.location = 'https://www.facebook.com/WayciQ'
+}
