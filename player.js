@@ -6,12 +6,15 @@ const songArtist = document.querySelector('.song-artist'); // element where trac
 const songTitle = document.querySelector('.song-title'); // element where track title appears
 const progressBar = document.querySelector('#progress-bar'); // element where progress bar appears
 let pPause = document.querySelector('#play-pause'); // element where play and pause image appears
+let sRepeat = document.querySelector('#repeat-shuffle');
+
 
 songIndex = 0;
-songs = ['./assets/music/cedbv.mp3', './assets/music/beyonce.mp3', './assets/music/dontstartnow.mp3']; // object storing paths for audio objects
-thumbnails = ['./assets/images/chillies.png', './assets/images/lemonade.png', './assets/images/dontstartnow.png']; // object storing paths for album covers and backgrounds
-songArtists = ['Chillies', 'Beyonce', 'Dua Lipa']; // object storing track artists
-songTitles = ["Có em đời bỗng vui", "Don't Hurt Yourself", "Don't Start Now"]; // object storing track titles
+songs = ['./assets/music/cedbv.mp3', './assets/music/i-trust-u.mp3', './assets/music/dontstartnow.mp3']; // object storing paths for audio objects
+thumbnails = ['./assets/images/chillies.png', './assets/images/i-trust-u.png', './assets/images/dontstartnow.png']; // object storing paths for album covers and backgrounds
+songArtists = ['Chillies', 'Rxseboy', 'Dua Lipa']; // object storing track artists
+songTitles = ["Có em đời bỗng vui", "I trust U", "Don't Start Now"]; // object storing track titles
+numSong = songs.length - 1; // number of the playlist
 
 // function where pp (play-pause) element changes based on playing boolean value - if play button clicked, change pp.src to pause button and call song.play() and vice versa.
 let playing = true;
@@ -32,20 +35,62 @@ function playPause() {
 
         song.pause();
         playing = true;
+
     }
 }
 
 // automatically play the next song at the end of the audio object's duration
 song.addEventListener('ended', function() {
+    if (mPlay == 1) {
+        songIndex--;
+    }
     nextSong();
 });
 
-// function where songIndex is incremented, song/thumbnail image/background image/song artist/song title changes to next index value, and playPause() runs to play next track 
-function nextSong() {
-    songIndex++;
-    if (songIndex > 2) {
-        songIndex = 0;
+//function rs(repeat-shuffle) where mPlay is incremented, element repeat, no-repeat and shuffle changes base on number of mPlay
+mPlay = 0;
+
+function repeatShuffler() {
+    mPlay++;
+    if (mPlay > 2) {
+        mPlay = 0;
     };
+    if (mPlay == 0) {
+        sRepeat.src = "./assets/icons/no-repeat.png"
+    } else if (mPlay == 1) {
+        sRepeat.src = "./assets/icons/repeat.png"
+    } else {
+        sRepeat.src = "./assets/icons/shuffle.png"
+    }
+
+}
+// function where song 
+perviousNum = NaN;
+var shuffleSong = function() {
+
+        var max = numSong;
+        max += (!isNaN(perviousNum) ? -1 : 0);
+        var value = Math.floor(Math.random() * (max + 1));
+        if (value === previousSong) {
+            return value = random();
+        } else {
+            previousSong = value;
+            return value;
+        }
+
+    }
+    // function where songIndex is incremented, song/thumbnail image/background image/song artist/song title changes to next index value, and playPause() runs to play next track 
+
+function nextSong() {
+    if (mPlay == 2) {
+        songIndex = shuffleSong();
+    } else {
+        songIndex++;
+        if (songIndex > numSong) {
+            songIndex = 0;
+        };
+    }
+
     song.src = songs[songIndex];
     thumbnail.src = thumbnails[songIndex];
     background.src = thumbnails[songIndex];
@@ -61,7 +106,7 @@ function nextSong() {
 function previousSong() {
     songIndex--;
     if (songIndex < 0) {
-        songIndex = 2;
+        songIndex = numSong;
     };
     song.src = songs[songIndex];
     thumbnail.src = thumbnails[songIndex];
