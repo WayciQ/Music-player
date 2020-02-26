@@ -148,13 +148,44 @@ setInterval(updateProgressValue, 500);
 function changeProgressBar() {
     song.currentTime = progressBar.value;
 };
-
+// function whewe go to author's facebook
 function fbClick() {
     window.location = 'https://www.facebook.com/WayciQ'
 }
 
-volume = document.getElementById("volume-bar");
+var volumeBar = document.querySelector("#volume-bar"); // element where volume-bar appears
+song.volume = (volumeBar.value / 100); // song volume same volume-bar.value
 
-function changeVolume() {
-    song.volume = this.value;
+// function where song's volume changes same volume-bar.value
+volumeBar.oninput = function() {
+    song.volume = (volumeBar.value / 100);
+}
+
+// function where hover volume show or hide volume-bar
+$(document).ready(function() {
+    $("#volume").hover(function() {
+        $("#volume-bar").show();
+    }, function() {
+        $("#volume-bar").hide();
+    });
+    $("#volume-bar").hover(function() {
+        $("#volume-bar").show();
+    }, function() {
+        $("#volume-bar").hide();
+    });
+
+});
+
+// function where click volume song's volume mute
+vMute = 0;
+
+function volumeClick() {
+    vMute++;
+    if (vMute > 1) {
+        vMute = 0;
+    }
+    if (vMute == 1) {
+        song.volume = 0;
+    } else
+        song.volume = (volumeBar.value / 100);
 }

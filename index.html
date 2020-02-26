@@ -19,18 +19,21 @@
         <img src="./assets/icons/backward.png" onclick="previousSong()" id="previous-song" />
         <img src="./assets/icons/no-repeat.png" onclick="repeatShuffler()" id="repeat-shuffle" />
         <img src="./assets/icons/fb.png" onclick="fbClick()" id="facebook" />
-        <img src="/.assets/icons/volume.png" onclick="volume()" id="volume" />
+        <img src="/.assets/icons/volume.png" onclick="volumeClick()" id="volume" />
 
         <div class="song-artist">Chillies</div>
         <div class="song-title">Có em đời bỗng vui</div>
         <!--Input element for progress bar - min=0 strarting value of every song - max length will change per song so leave empty -->
         <input type="range" id="progress-bar" min="0" max="" value="0" onchange="changeProgressBar()" />
-        <input type="range" id="volume-bar" min="1" max="100" value="50" onchange="changeValue()" />
+        <input type="range" id="volume-bar" min="1" max="100" value="50" />
         <div class="currentTime"></div>
         <div class="durationTime"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="player.js"></script>
+    <script>
+        $("#volume-bar").hide()
+    </script>
 </body>
 
 </html>
