@@ -6,7 +6,7 @@ const songArtist = document.querySelector('.song-artist'); // element where trac
 const songTitle = document.querySelector('.song-title'); // element where track title appears
 const progressBar = document.querySelector('#progress-bar'); // element where progress bar appears
 let pPause = document.querySelector('#play-pause'); // element where play and pause image appears
-let sRepeat = document.querySelector('#repeat-shuffle');
+let sRepeat = document.querySelector('#repeat-shuffle'); // element where no-repeat, repeat and shuffle image appears
 
 
 songIndex = 0;
@@ -151,4 +151,10 @@ function changeProgressBar() {
 
 function fbClick() {
     window.location = 'https://www.facebook.com/WayciQ'
+}
+
+volume = document.getElementById("volume-bar");
+
+function changeVolume() {
+    song.volume = this.value;
 }
