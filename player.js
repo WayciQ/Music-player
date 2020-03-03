@@ -163,7 +163,7 @@ volumeBar.oninput = function() {
 
 // function where hover volume show or hide volume-bar
 $(document).ready(function() {
-    $("#volume").hover(function() {
+    $(".volume-control").hover(function() {
         $("#volume-bar").show();
     }, function() {
         $("#volume-bar").hide();
